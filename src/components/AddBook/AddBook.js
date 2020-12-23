@@ -5,14 +5,14 @@ export default function AddBook () {
     
     const formData = 
         [
-            {size: "100%", type: "text", label: "Title"}, 
-            {size: "25%", type: "checkbox", label: "Genre" },
-            {size: "25%", type: "text", label: "Year Published"},
-            {size: "25%", type: "text", label: "Pages"}
+            {style: {width:"60%", border: "2px solid red"}, type: "text", label: "Title"}, 
+            {style: {width:"25%"}, type: "checkbox", label: "Genre" },
+            {style: {width:"25%"}, type: "text", label: "Year Published"},
+            {style: {width:"25%"}, type: "text", label: "Pages"}
         ];
 
-        //add style objects for fields
-        
+        //TO DO - add style objects for fields
+
     return (
         <div className="book-form">
             <h2>Add Book</h2>

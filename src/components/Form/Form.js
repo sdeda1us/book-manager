@@ -9,7 +9,7 @@ export default function Form ({formData}) {
             {JSON.stringify(formData.labels)}
             <form>
                 {formData.map(input => 
-                    <div><label>{input.label}</label><input type={input.type}/></div>
+                    <div><label>{input.label}</label><input type={input.type} style={input.style}/></div>
                     )}
             </form>
         </div>
