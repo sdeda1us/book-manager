@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
-const TEMPLATEVAR = require('./routes/TEMPLATE.router.js')
+const bookRouter = require('./routes/book.router.js')
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-app.use('/TEMPLATE', TEMPLATEVAR)
+app.use('/books', bookRouter)
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {
