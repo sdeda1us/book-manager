@@ -1,4 +1,12 @@
-<<<<<<< HEAD
-=======
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100),
+    publication_year SMALLINT,
+    pages SMALLINT,
+    genre_id SMALLINT REFERENCES genres
+);
 
->>>>>>> 435845d0347915729f3ca895dd20ccb2794dde65
+CREATE TABLE genres (
+    id SERIAL PRIMARY KEY,
+    genre VARCHAR(100)
+);
