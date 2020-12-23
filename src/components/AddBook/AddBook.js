@@ -11,7 +11,7 @@ export default function AddBook () {
             {style: {width:"25%"}, type: "text", label: "Pages"}
         ];
 
-        //TO DO - add style objects for fields
+    
 
     return (
         <div className="book-form">

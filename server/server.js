@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 const bookRouter = require('./routes/book.router.js')
-const genreRouter = require('./routes/genre.router.js')
+const subjectRouter = require('./routes/subject.router.js')
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
@@ -12,7 +12,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/books', bookRouter);
-app.use('/genre', genreRouter);
+app.use('/subject', subjectRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(PORT, () => {
