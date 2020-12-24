@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
-app.use('/books', bookRouter);
+app.use('/book', bookRouter);
 app.use('/subject', subjectRouter);
 
 /** ---------- START SERVER ---------- **/

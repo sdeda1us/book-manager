@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from '../Form/Form';
+import BookList from '../BookList/BookList';
 
 export default function AddBook () {
     
@@ -17,6 +18,7 @@ export default function AddBook () {
         <div className="book-form">
             <h2>Add Book</h2>
             <Form formData={formData}/>
+            <BookList/>
         </div>
     )
 }
