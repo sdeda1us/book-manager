@@ -12,14 +12,20 @@ export default function AddBook () {
 
     //defining hooks for input fields
     const [titleProps, resetTitle] = useInput('');
-    const [publishedProps, resetPublished] = useInput(null);
-    const [pagesProps, resetPages] = useInput(null);
-    const [subjectProps, resetSubject] = useInput(null);
+    const [publishedProps, resetPublished] = useInput('');
+    const [pagesProps, resetPages] = useInput('');
+    const [subjectProps, resetSubject] = useInput('');
 
     //form submit function
     const submit = event => {
         event.preventDefault();
-        console.log(titleProps.value, publishedProps.value, pagesProps.value, subjectProps.value);
+        const formPacket = {title: titleProps.value, publication_year:publishedProps.value, pages: pagesProps.value, subject_id: subjectProps.value};
+        dispatch({type:'POST_BOOK', payload: formPacket});
+        dispatch({type:'FETCH_SUBJECTS'});
+        resetTitle();
+        resetPublished();
+        resetPages();
+        resetSubject();
     }
 
     //render properties for input fields
@@ -35,8 +41,8 @@ export default function AddBook () {
         <div className="book-form">
             <h2>Add Book</h2>
             <form onSubmit={submit}>
-                {formData.map((input, i) => 
-                    <div key={i}><label>{input.label}</label>
+                {formData.map((input) => 
+                    <div key={input.id}><label>{input.label}</label>
                         <input {...input.function} type={input.type} style={input.style}/>
                     </div>
                     )}

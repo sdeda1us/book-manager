@@ -12,11 +12,22 @@ import Axios from 'axios';
 
 const sagaMiddleware = createSagaMiddleware();
 
-
+//----------------------WATCHER SAGA------------------------------//
 function* rootSaga() {
     yield takeEvery('FETCH_BOOKS', fetchBooks);
     yield takeEvery('FETCH_SUBJECTS', fetchSubjects);
     yield takeEvery('FETCH_JOIN', fetchJoin);
+    yield takeEvery('POST_BOOK', postBook);
+}
+
+//------------------------ACTION SAGAS----------------------------//
+function* fetchBooks() {
+    try {
+        const response =  yield call(Axios.get, '/book')
+        yield put({type: 'SET_BOOKS', payload: response.data})
+    }catch (error) {
+        console.log('Error getting books from server', error);
+    }
 }
 
 function* fetchJoin() {
@@ -37,15 +48,18 @@ function* fetchSubjects() {
     }
 }
 
-function* fetchBooks() {
+function* postBook(action) {
     try {
-        const response =  yield call(Axios.get, '/book')
+        const response = yield call(Axios.post, '/book', action.payload)
         yield put({type: 'SET_BOOKS', payload: response.data})
-    }catch (error) {
-        console.log('Error getting books from server', error);
+    }catch(error){
+        console.log('Error getting subjects from the server', error);
     }
 }
 
+
+
+//-------------------------REDUCERS------------------------------//
 const bookReducer = (state = [], action) => {
     if(action.type === 'SET_BOOKS'){
         return action.payload;
@@ -67,7 +81,7 @@ const subjectReducer = (state=[], action) => {
     return state;
 }
 
-
+//Create redux store
 const storeInstance = createStore(
     combineReducers({
         bookReducer, subjectReducer, joinReducer
