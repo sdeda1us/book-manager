@@ -17,7 +17,6 @@ function App() {
           <Route exact path="/" component={AddBook}/>
           <Route path="/subject" component={AddSubject}/>
       </Router>
-      <p>Hi from app!</p>
     </div>
   );
 }
