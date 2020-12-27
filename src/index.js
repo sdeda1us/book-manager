@@ -50,16 +50,10 @@ const subjectReducer = (state=[], action) => {
     return state;
 }
 
-const newBookReducer = (state=[], action) => {
-    if(action.type === 'SET_NEW_BOOK'){
-        return [...state, action.payload];
-    }
-    return state;
-}
 
 const storeInstance = createStore(
     combineReducers({
-        bookReducer, subjectReducer, newBookReducer,
+        bookReducer, subjectReducer, 
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
