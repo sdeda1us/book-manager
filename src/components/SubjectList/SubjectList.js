@@ -3,9 +3,9 @@ import {useDispatch, useSelector} from 'react-redux';
 import Table from 'react-bootstrap/Table';
 
 export default function SubjectList() {
-    const subjectList = useSelector(state => state.subjectReducer);
+    const joinList = useSelector(state => state.joinReducer);
     const dispatch = useDispatch();
-    useEffect(() => {dispatch({type:'FETCH_SUBJECTS'})}, []);
+    useEffect(() => {dispatch({type:'FETCH_JOIN'})}, []);
 
     return(
         <Table striped bordered hover>
@@ -17,7 +17,7 @@ export default function SubjectList() {
                 </tr>
             </thead>
             <tbody>
-                {subjectList.map(s=> 
+                {joinList.map(s=> 
                     <tr key={s.id}>
                         <td>{s.subject}</td>
                         <td>{s.count}</td>
