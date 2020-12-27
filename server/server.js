@@ -2,8 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
-const bookRouter = require('./routes/book.router.js')
-const subjectRouter = require('./routes/subject.router.js')
+const bookRouter = require('./routes/book.router.js');
+const joinRouter = require('./routes/join.router.js');
+const subjectRouter = require('./routes/subject.router.js');
 
 /** ---------- MIDDLEWARE ---------- **/
 app.use(bodyParser.json()); // needed for angular requests
@@ -12,6 +13,7 @@ app.use(express.static('build'));
 
 /** ---------- EXPRESS ROUTES ---------- **/
 app.use('/book', bookRouter);
+app.use('/join', joinRouter);
 app.use('/subject', subjectRouter);
 
 /** ---------- START SERVER ---------- **/

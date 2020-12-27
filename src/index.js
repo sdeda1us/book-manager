@@ -16,6 +16,16 @@ const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
     yield takeEvery('FETCH_BOOKS', fetchBooks);
     yield takeEvery('FETCH_SUBJECTS', fetchSubjects);
+    yield takeEvery('FETCH_JOIN', fetchJoin);
+}
+
+function* fetchJoin() {
+    try {
+        const response = yield call(Axios.get, '/join')
+        yield put({type: 'SET_JOIN', payload: response.data})
+    }catch(error){
+        console.log('Error getting subjects from the server', error);
+    }
 }
 
 function* fetchSubjects() {
@@ -43,6 +53,13 @@ const bookReducer = (state = [], action) => {
     return state;
 }
 
+const joinReducer = (state=[], action) => {
+    if(action.type === 'SET_JOIN'){
+        return action.payload;
+    }
+    return state;
+}
+
 const subjectReducer = (state=[], action) => {
     if(action.type === 'SET_SUBJECTS'){
         return action.payload;
@@ -53,7 +70,7 @@ const subjectReducer = (state=[], action) => {
 
 const storeInstance = createStore(
     combineReducers({
-        bookReducer, subjectReducer, 
+        bookReducer, subjectReducer, joinReducer
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
