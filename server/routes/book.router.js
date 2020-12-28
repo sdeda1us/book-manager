@@ -22,4 +22,13 @@ router.post('/', (req,res) => {
   })
 });
 
+router.put('/:id', (req,res) => {
+  const sqlText = `UPDATE books SET subject_id=NULL where subject_id=($1)`;
+  pool.query(sqlText, [req.params.id])
+  .then(result => {res.sendStatus(201)})
+  .catch(error => {console.log('error posting new book', error)
+        res.sendStatus(500)
+  })
+});
+
 module.exports = router;

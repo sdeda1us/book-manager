@@ -25,9 +25,10 @@ function* rootSaga() {
 //------------------------ACTION SAGAS----------------------------//
 function* eraseSubject(action) {
     try {
-        console.log(action.payload);
-        const response = yield call(Axios.delete, `/subject/${action.payload}`)
-        //yield put({type: 'SET_BOOKS', payload: response.data})
+        yield call(Axios.put, `/book/${action.payload}`)
+        yield call(Axios.delete, `/subject/${action.payload}`)
+        const response = yield call(Axios.get, '/join')
+        yield put({type: 'SET_JOIN', payload: response.data})
     }catch(error){
         console.log('Error getting subjects from the server', error);
     }
@@ -63,7 +64,6 @@ function* fetchSubjects() {
 function* postBook(action) {
     try {
         const response = yield call(Axios.post, '/book', action.payload)
-        //yield put({type: 'SET_BOOKS', payload: response.data})
     }catch(error){
         console.log('Error getting subjects from the server', error);
     }
