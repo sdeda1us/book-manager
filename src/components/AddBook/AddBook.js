@@ -31,9 +31,9 @@ export default function AddBook () {
     //render properties for input fields
     const formData = 
         [
-            {style: {width:"60%", border: "2px solid red"}, type: "text", label: "Title", varName: "title", function: titleProps}, 
-            {style: {width:"25%"}, type: "text", label: "Year Published", varName: "year_published", function: publishedProps},
-            {style: {width:"25%"}, type: "text", label: "Pages", varName: "pages", function: pagesProps}
+            {style: {id: 1, width:"60%", border: "2px solid red"}, type: "text", label: "Title", varName: "title", function: titleProps}, 
+            {style: {id: 2, width:"25%"}, type: "text", label: "Year Published", varName: "year_published", function: publishedProps},
+            {style: {id: 3, width:"25%"}, type: "text", label: "Pages", varName: "pages", function: pagesProps}
         ];
 
    
@@ -49,7 +49,7 @@ export default function AddBook () {
                 <label>Subject</label>
                 <select name="subject" {...subjectProps}>
                     <option>Choose a subject</option>
-                    {subjectList.map((s, i) => (<option key={i} value={s.id}>{s.subject}</option>))}
+                    {subjectList.map((s) => (<option key={s.id} value={s.id}>{s.subject}</option>))}
                 </select>
                 <button>Submit</button>
             </form>
