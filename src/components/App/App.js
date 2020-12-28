@@ -4,10 +4,11 @@ import Header from '../Header/Header';
 import AddSubject from '../AddSubject/AddSubject';
 import AddBook from '../AddBook/AddBook';
 import './App.css';
+import Grid from '@material-ui/core/Grid';
 
 function App() {
   return (
-    <div className="App">
+    <Grid>
       <Header />
       <Router>
         <nav>
@@ -17,7 +18,8 @@ function App() {
           <Route exact path="/" component={AddBook}/>
           <Route path="/subject" component={AddSubject}/>
       </Router>
-    </div>
+    
+    </Grid>
   );
 }
 

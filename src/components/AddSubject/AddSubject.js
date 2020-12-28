@@ -23,8 +23,8 @@ export default function AddSubject () {
      <div>
          <h2>Add Subject</h2>
          <form onSubmit={submit}>
-                {formData.map((input, i) => 
-                    <div key={i}><label>{input.label}</label><input {...input.function} type={input.type} style={input.style}/></div>
+                {formData.map((input) => 
+                    <div key={input.id}><label>{input.label}</label><input {...input.function} type={input.type} style={input.style}/></div>
                     )}
                 <button>Submit</button>
         </form>           
