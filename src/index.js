@@ -18,9 +18,21 @@ function* rootSaga() {
     yield takeEvery('FETCH_SUBJECTS', fetchSubjects);
     yield takeEvery('FETCH_JOIN', fetchJoin);
     yield takeEvery('POST_BOOK', postBook);
+    yield takeEvery('POST_SUBJECT', postSubject);
+    yield takeEvery('ERASE_SUBJECT', eraseSubject);
 }
 
 //------------------------ACTION SAGAS----------------------------//
+function* eraseSubject(action) {
+    try {
+        console.log(action.payload);
+        const response = yield call(Axios.delete, `/subject/${action.payload}`)
+        //yield put({type: 'SET_BOOKS', payload: response.data})
+    }catch(error){
+        console.log('Error getting subjects from the server', error);
+    }
+}
+
 function* fetchBooks() {
     try {
         const response =  yield call(Axios.get, '/book')
@@ -51,12 +63,20 @@ function* fetchSubjects() {
 function* postBook(action) {
     try {
         const response = yield call(Axios.post, '/book', action.payload)
-        yield put({type: 'SET_BOOKS', payload: response.data})
+        //yield put({type: 'SET_BOOKS', payload: response.data})
     }catch(error){
         console.log('Error getting subjects from the server', error);
     }
 }
 
+function* postSubject(action) {
+    try {
+        const response = yield call(Axios.post, '/subject', action.payload)
+        //yield put({type: 'SET_SUBJECTS', payload: response.data})
+    }catch(error){
+        console.log('Error posting new subject to the server', error);
+    }
+}
 
 
 //-------------------------REDUCERS------------------------------//

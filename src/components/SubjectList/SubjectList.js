@@ -21,6 +21,13 @@ export default function SubjectList() {
                     <tr key={s.id}>
                         <td>{s.subject}</td>
                         <td>{s.count}</td>
+                        <td>
+                            <button onClick={() => 
+                                {dispatch({type:'ERASE_SUBJECT', payload: s.id}); 
+                                dispatch({type:'FETCH_JOIN'})}}>
+                                Delete
+                            </button>
+                        </td>
                     </tr>)}
             </tbody>
         </Table>
