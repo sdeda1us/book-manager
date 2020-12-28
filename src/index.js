@@ -12,11 +12,35 @@ import Axios from 'axios';
 
 const sagaMiddleware = createSagaMiddleware();
 
-
+//----------------------WATCHER SAGA------------------------------//
 function* rootSaga() {
     yield takeEvery('FETCH_BOOKS', fetchBooks);
     yield takeEvery('FETCH_SUBJECTS', fetchSubjects);
     yield takeEvery('FETCH_JOIN', fetchJoin);
+    yield takeEvery('POST_BOOK', postBook);
+    yield takeEvery('POST_SUBJECT', postSubject);
+    yield takeEvery('ERASE_SUBJECT', eraseSubject);
+}
+
+//------------------------ACTION SAGAS----------------------------//
+function* eraseSubject(action) {
+    try {
+        yield call(Axios.put, `/book/${action.payload}`)
+        yield call(Axios.delete, `/subject/${action.payload}`)
+        const response = yield call(Axios.get, '/join')
+        yield put({type: 'SET_JOIN', payload: response.data})
+    }catch(error){
+        console.log('Error getting subjects from the server', error);
+    }
+}
+
+function* fetchBooks() {
+    try {
+        const response =  yield call(Axios.get, '/book')
+        yield put({type: 'SET_BOOKS', payload: response.data})
+    }catch (error) {
+        console.log('Error getting books from server', error);
+    }
 }
 
 function* fetchJoin() {
@@ -37,15 +61,25 @@ function* fetchSubjects() {
     }
 }
 
-function* fetchBooks() {
+function* postBook(action) {
     try {
-        const response =  yield call(Axios.get, '/book')
-        yield put({type: 'SET_BOOKS', payload: response.data})
-    }catch (error) {
-        console.log('Error getting books from server', error);
+        const response = yield call(Axios.post, '/book', action.payload)
+    }catch(error){
+        console.log('Error getting subjects from the server', error);
     }
 }
 
+function* postSubject(action) {
+    try {
+        const response = yield call(Axios.post, '/subject', action.payload)
+        //yield put({type: 'SET_SUBJECTS', payload: response.data})
+    }catch(error){
+        console.log('Error posting new subject to the server', error);
+    }
+}
+
+
+//-------------------------REDUCERS------------------------------//
 const bookReducer = (state = [], action) => {
     if(action.type === 'SET_BOOKS'){
         return action.payload;
@@ -67,7 +101,7 @@ const subjectReducer = (state=[], action) => {
     return state;
 }
 
-
+//Create redux store
 const storeInstance = createStore(
     combineReducers({
         bookReducer, subjectReducer, joinReducer
