@@ -4,12 +4,13 @@ const pool = require('../modules/pool.js');
 
 
 router.get('/', (req, res) => {
-    const sqlText = `SELECT b.title, b.publication_year, b.pages, b.subject_id, s.id, s.subject
+    const sqlText = `SELECT b.id, b.title, b.publication_year, b.pages, b.subject_id, s.id, s.subject, i.url, i.book_id
                     FROM books AS b
-                    JOIN subjects AS s ON b.subject_id = s.id;`;
+                    JOIN images AS i ON i.book_id=b.id
+                    JOIN subjects AS s ON b.subject_id = s.id;`
     pool.query(sqlText)
     .then(result => {res.send(result.rows)})
-    .catch(error => {console.log('error retrieving posters', error)})
+    .catch(error => {console.log('error retrieving book data', error)})
   })
 
 router.post('/', (req,res) => {

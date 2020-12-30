@@ -15,7 +15,7 @@ const CardSpace = styled.div`
 const Card = styled.div`
     padding: 10px;
     width: 20%;
-    height: 400px;
+    height: 500px;
     border: 2px solid black;
     margin: 5%;
     text-align: center;
@@ -23,7 +23,18 @@ const Card = styled.div`
 `
 
 const CardTitle = styled.div`
-    font-size: 1.5rem;
+    padding-top: 5px;
+    font-size: 1.3rem;
+    letter-spacing: 3px;
+`
+
+const CardImage = styled.img`
+    height: 60%;
+    width: 90%;
+`
+
+const CardText = styled.p`
+    font-spacing: 3px;
 `
 
 export default function BookList() {
@@ -37,10 +48,11 @@ export default function BookList() {
         <CardSpace>
             {bookList.map(book => 
                 <Card key={book.id} border="secondary">
+                        <CardImage src={book.url}></CardImage>
                         <CardTitle>{book.title} </CardTitle>
                         <p>{book.subject}</p>
-                        <p>Published: {book.publication_year}</p>
-                        <p>Length {book.pages} pages</p>
+                        <p>{book.publication_year}</p>
+                        <p>{book.pages} pages</p>
                 </Card>
             )}  
         </CardSpace>
