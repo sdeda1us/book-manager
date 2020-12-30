@@ -4,6 +4,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../Hooks/Hooks';
 import styled, {css} from 'styled-components';
 
+//-------------------------------STYLED COMPONENTS-------------------------------//
+
 const PageSpace = styled.div`
   padding: 10px;
   width: auto;
@@ -60,6 +62,12 @@ const FormRow = styled.div`
     width: 95%;
     justify-content: flex-start;
     margin-left: 2.5%
+`
+
+const SubHeader = styled.div`
+    padding-top: 30px;
+    text-align: center;
+    font-size: 2rem;
 `
 
 
@@ -129,7 +137,9 @@ export default function AddBook () {
                     </FormRow>
                 </form>
             </FormSpace>
-            <h2>Book Collection</h2>
+            <SubHeader>
+                <h2>Book Collection</h2>
+            </SubHeader>
             <BookList/>
         </PageSpace>
     )

@@ -2,6 +2,11 @@ import React from "react";
 import SubjectList from '../SubjectList/SubjectList';
 import {useInput} from '../Hooks/Hooks';
 import { useDispatch} from 'react-redux';
+import styled, {css} from 'styled-components';
+
+//-------------------------------STYLED COMPONENTS-------------------------------//
+
+
 
 export default function AddSubject () {
     const [subjectProps, resetSubject] = useInput('');
