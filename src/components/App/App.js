@@ -3,6 +3,7 @@ import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import Header from '../Header/Header';
 import AddSubject from '../AddSubject/AddSubject';
 import AddBook from '../AddBook/AddBook';
+import AddImage from '../AddImage/AddImage';
 import './App.css';
 import styled from 'styled-components';
 
@@ -40,9 +41,11 @@ function App() {
         <NavBar>
               <Link to = '/'><LinkText>Add Entry</LinkText></Link>
               <Link to = '/subject'><LinkText>Add Subject</LinkText></Link>
+              <Link to = '/image'><LinkText>Add Image</LinkText></Link>
         </NavBar>
           <Route exact path="/" component={AddBook}/>
           <Route path="/subject" component={AddSubject}/>
+          <Route path="/image" component={AddImage}/>
       </Router>
     
     </PageSpace>
