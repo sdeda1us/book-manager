@@ -17,12 +17,11 @@ const FormSpace = styled.form`
     border-radius: 5px;
     padding: 10px 80px;
     margin-top: 20px;
-    box-shadow: -13px 9px 5px 0px rgba(41, 147, 153, 0.71);
+    box-shadow: -13px 9px 5px 0px rgba(94, 33, 17, 0.7);
 `
 
 const InputField = styled.input`
     border-radius: 5px;
-    //box-shadow: 10px 10px 5px gray;
     margin: 10px;
     box-shadow: inset -3px 6px 5px 0px rgba(171, 178, 178, 0.71);
     background: #fff;
@@ -38,12 +37,12 @@ const SelectField = styled.select`
 `
 const SubmitButton = styled.button`
     border-radius: 5px;
-    box-shadow: 8px 8px 5px gray;
+    box-shadow: inset -3px 6px 5px 0px rgba(40, 81, 214, 0.4);
     margin: 10px;
-    background-color: green;
+    background-color: rgb(40, 81, 214);
     color: white;
     height: 40px;
-    width: 65px;
+    width: 100px;
 `
 const LabelBox = styled.div`
     width: 20%;

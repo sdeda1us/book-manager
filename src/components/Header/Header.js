@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import GlobalFonts from '../Fonts/Fonts';
 
 const HeadStyle = styled.div`
-    background-color: white;
+    background-color: rgb(94, 33, 17);
     text-align: center;
     padding-top: 20px;
     width: 100;
     height: 100px;
-    color: rgb(110, 99, 83);
+    color: white;
     font-family: Quattrocento;
-    border: 5px solid rgba(41, 147, 153, 0.71);
+    border: 2px solid rgb(218, 180, 98);
     border-radius: 5px;
     `
 

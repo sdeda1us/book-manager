@@ -1,6 +1,41 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from 'react-redux';
-import Table from 'react-bootstrap/Table';
+import styled, {css} from 'styled-components';
+
+//-------------------------------STYLED COMPONENTS-------------------------------//
+
+const TableSpace = styled.table`
+    width: 80%;
+    margin: auto;
+`
+
+const Table = styled.table`
+    width: 80%;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 5px;
+`
+
+const TableHead = styled.thead`
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+`
+
+const TableRow = styled.tr`    
+    background-color: white;
+`
+
+const DeleteButton = styled.button`
+    border-radius: 5px;
+    box-shadow: inset -3px 6px 5px 0px rgba(249, 21, 25, 0.5);
+    margin: 10px;
+    background-color: rgb(249, 21, 25);
+    color: white;
+    height: 2rem;
+    width: 6rem;
+`
+
 
 export default function SubjectList() {
     const joinList = useSelector(state => state.joinReducer);
@@ -8,28 +43,30 @@ export default function SubjectList() {
     useEffect(() => {dispatch({type:'FETCH_JOIN'})}, []);
 
     return(
-        <Table striped bordered hover>
-            <thead>
+        <TableSpace>
+        <Table>
+            <TableHead>
                 <tr>
                     <th>Subject</th>
                     <th>Total Books</th>
                     <th>&nbsp;</th>
                 </tr>
-            </thead>
+            </TableHead>
             <tbody>
                 {joinList.map(s=> 
-                    <tr key={s.id}>
+                    <TableRow key={s.id}>
                         <td>{s.subject}</td>
                         <td>{s.count}</td>
                         <td>
-                            <button onClick={() => 
+                            <DeleteButton onClick={() => 
                                 {dispatch({type:'ERASE_SUBJECT', payload: s.id}); 
                                 dispatch({type:'FETCH_JOIN'})}}>
                                 Delete
-                            </button>
+                            </DeleteButton>
                         </td>
-                    </tr>)}
+                    </TableRow>)}
             </tbody>
         </Table>
+        </TableSpace>
     )
 };

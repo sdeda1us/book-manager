@@ -19,7 +19,7 @@ const Card = styled.div`
     border: 2px solid black;
     margin: 5%;
     text-align: center;
-    box-shadow: -13px 9px 5px 0px rgba(41, 147, 153, 0.71);
+    box-shadow: -13px 9px 5px 0px rgba(94, 33, 17, 0.7);
 `
 
 const CardTitle = styled.div`
