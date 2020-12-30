@@ -2,17 +2,28 @@ import React, {useEffect, useState} from 'react';
 import BookList from '../BookList/BookList';
 import { useDispatch, useSelector} from 'react-redux';
 import {useInput} from '../Hooks/Hooks';
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const PageSpace = styled.div`
   padding: 10px;
   width: auto;
 `
+const FormSpace = styled.form`
+    width: 80%;
+    margin: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 80px;
+    margin-top: 20px;
+    box-shadow: -13px 9px 5px 0px rgba(41, 147, 153, 0.71);
+`
 
 const InputField = styled.input`
     border-radius: 5px;
-    box-shadow: 10px 10px 5px gray;
+    //box-shadow: 10px 10px 5px gray;
     margin: 10px;
+    box-shadow: inset -3px 6px 5px 0px rgba(171, 178, 178, 0.71);
+    background: #fff;
 `
 const SelectField = styled.select`
     border-radius: 5px;
@@ -20,6 +31,8 @@ const SelectField = styled.select`
     margin: 10px;
     width: 400px;
     height: 20px;
+    box-shadow: inset -3px 6px 5px 0px rgba(171, 178, 178, 0.71);
+    background: #fff;
 `
 const SubmitButton = styled.button`
     border-radius: 5px;
@@ -36,13 +49,20 @@ const LabelBox = styled.div`
 
 const InputBox = styled.div`
 width: 70%;
+
+${props => props.selectBox && css`
+    width: 50%;
+  `}
 `
 
 const FormRow = styled.div`
     display: inline-flex;
     width: 95%;
-    justify-content: space-around;
+    justify-content: flex-start;
+    margin-left: 2.5%
 `
+
+
 export default function AddBook () {
     //imports redux state for book subjects
     const subjectList = useSelector(state => state.subjectReducer);
@@ -79,33 +99,36 @@ export default function AddBook () {
    
     return (
         <PageSpace>
-            <h2>Add Book</h2>
-            <form onSubmit={submit}>
-                {formData.map((input) => 
-                    <FormRow>
-                        <LabelBox key={input.id}>
-                            <label>{input.label}</label>
+            <FormSpace>
+                <h2>Add Book</h2>
+                <form onSubmit={submit}>
+                    {formData.map((input) => 
+                        <FormRow>
+                            <LabelBox key={input.id}>
+                                <label>{input.label}</label>
+                            </LabelBox>
+                            <InputBox>  
+                                <InputField {...input.function} 
+                                    type={input.type} style={input.style}/>
+                            </InputBox>
+                        </FormRow>)}
+                    <FormRow selectRow>
+                        <LabelBox>
+                            <label>Subject</label>
                         </LabelBox>
-                        <InputBox>  
-                            <InputField {...input.function} 
-                                type={input.type} style={input.style}/>
+                        <InputBox>
+                            <SelectField name="subject" {...subjectProps}>
+                                <option>Choose a subject</option>
+                                {subjectList.map((s) => (<option key={s.id} value={s.id}>{s.subject}</option>))}
+                            </SelectField>
                         </InputBox>
-                    </FormRow>)}
-                <FormRow>
-                    <LabelBox>
-                        <label>Subject</label>
-                    </LabelBox>
-                    <InputBox>
-                        <SelectField name="subject" {...subjectProps}>
-                            <option>Choose a subject</option>
-                            {subjectList.map((s) => (<option key={s.id} value={s.id}>{s.subject}</option>))}
-                        </SelectField>
-                    </InputBox>
-                </FormRow>
-                <FormRow>
-                    <SubmitButton>Submit</SubmitButton>
-                </FormRow>
-            </form>
+                        <SubmitButton>Submit</SubmitButton>
+                    </FormRow>
+                    <FormRow>
+                        
+                    </FormRow>
+                </form>
+            </FormSpace>
             <h2>Book Collection</h2>
             <BookList/>
         </PageSpace>

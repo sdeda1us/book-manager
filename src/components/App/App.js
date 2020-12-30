@@ -12,7 +12,7 @@ const PageSpace = styled.div`
   width: auto;
 `
 const NavBar = styled.nav`
-  background-color: purple;
+  background-color: rgb(153, 112, 51);
   display: flex;
   justify-content: center;
   text-align: center;
