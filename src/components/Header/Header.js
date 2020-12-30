@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const HeadStyle = styled.div`
     background-color: black;
-    width: 95%;
+    text-align: center;
+    padding-top: 20px;
+    width: 100;
     height: 100px;
     color:white;`
 

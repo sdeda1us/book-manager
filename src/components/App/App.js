@@ -4,22 +4,42 @@ import Header from '../Header/Header';
 import AddSubject from '../AddSubject/AddSubject';
 import AddBook from '../AddBook/AddBook';
 import './App.css';
-import Grid from '@material-ui/core/Grid';
+import styled from 'styled-components';
+
+//-------------------------------STYLED COMPONENTS-------------------------------//
+const PageSpace = styled.div`
+  padding: 10px;
+  width: auto;
+`
+const NavBar = styled.nav`
+  background-color: purple;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+`
+
+const LinkText = styled.a`
+  color: white;
+  padding: 10px;
+`
+
+
 
 function App() {
   return (
-    <Grid>
+    <PageSpace>
       <Header />
       <Router>
-        <nav>
-              <Link to = '/'>Add Entry</Link>
-              <Link to = '/subject'>Add Subject</Link>
-        </nav>
+        <NavBar>
+              <Link to = '/'><LinkText>Add Entry</LinkText></Link>
+              <Link to = '/subject'><LinkText>Add Subject</LinkText></Link>
+        </NavBar>
           <Route exact path="/" component={AddBook}/>
           <Route path="/subject" component={AddSubject}/>
       </Router>
     
-    </Grid>
+    </PageSpace>
   );
 }
 
