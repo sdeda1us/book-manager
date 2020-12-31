@@ -26,7 +26,7 @@ const NavBar = styled.nav`
   padding: 10px;
 `
 
-const LinkText = styled.a`
+const LinkText = styled.p`
   color: white;
   padding: 10px;
 `
