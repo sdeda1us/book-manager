@@ -10,7 +10,7 @@ const PageSpace = styled.div`
   padding: 10px;
   width: auto;
 `
-const FormSpace = styled.form`
+const FormSpace = styled.div`
     width: 80%;
     margin: auto;
     border: 1px solid black;

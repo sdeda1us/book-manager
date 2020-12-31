@@ -4,7 +4,7 @@ import styled, {css} from 'styled-components';
 
 //-------------------------------STYLED COMPONENTS-------------------------------//
 
-const TableSpace = styled.table`
+const TableSpace = styled.div`
     width: 80%;
     margin: auto;
 `
@@ -22,9 +22,6 @@ const TableHead = styled.thead`
     border-radius: 5px;
 `
 
-const TableRow = styled.tr`    
-    background-color: white;
-`
 
 const DeleteButton = styled.button`
     border-radius: 5px;
@@ -54,7 +51,7 @@ export default function SubjectList() {
             </TableHead>
             <tbody>
                 {joinList.map(s=> 
-                    <TableRow key={s.id}>
+                    <tr key={s.id}>
                         <td>{s.subject}</td>
                         <td>{s.count}</td>
                         <td>
@@ -64,7 +61,7 @@ export default function SubjectList() {
                                 Delete
                             </DeleteButton>
                         </td>
-                    </TableRow>)}
+                    </tr>)}
             </tbody>
         </Table>
         </TableSpace>

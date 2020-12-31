@@ -38,7 +38,6 @@ const CardText = styled.p`
 `
 
 export default function BookList() {
-    const bookImg = require('./book_icon.jpg');
     const bookList = useSelector(state => state.bookReducer);
     const dispatch = useDispatch();
     useEffect(() => {dispatch({type:'FETCH_BOOKS'})}, []);
@@ -48,7 +47,7 @@ export default function BookList() {
         <CardSpace>
             {bookList.map(book => 
                 <Card key={book.id} border="secondary">
-                        <CardImage src={book.url}></CardImage>
+                        <CardImage src={book.url} alt="Add an Image from the Navbar!"></CardImage>
                         <CardTitle>{book.title} </CardTitle>
                         <p>{book.subject}</p>
                         <p>{book.publication_year}</p>

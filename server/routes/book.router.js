@@ -4,9 +4,9 @@ const pool = require('../modules/pool.js');
 
 
 router.get('/', (req, res) => {
-    const sqlText = `SELECT b.id, b.title, b.publication_year, b.pages, b.subject_id, s.id, s.subject, i.url, i.book_id
+    const sqlText = `SELECT b.id, b.title, b.publication_year, b.pages, s.subject, i.url
                     FROM books AS b
-                    JOIN images AS i ON i.book_id=b.id
+                    FULL JOIN images AS i ON i.book_id=b.id
                     JOIN subjects AS s ON b.subject_id = s.id;`
     pool.query(sqlText)
     .then(result => {res.send(result.rows)})
