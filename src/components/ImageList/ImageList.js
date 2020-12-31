@@ -25,14 +25,16 @@ const SubmitButton = styled.button`
 
 export default function ImageList(book) {
     let [showEditButton, toggleButton] = useState(true);
+    let [editField, toggleField] = useState(false);
     const handleToggle = () => {
         toggleButton(!showEditButton);
+        toggleField(!editField);
     }
 
     return (
             <tr>
                 <td>{book.book.title}</td>
-                <td>{book.book.url}</td>
+                {editField ? <input defaultValue={book.book.url}/>:<td>{book.book.url}</td>}
                 {showEditButton ? <td><EditButton onClick={handleToggle}>Edit URL</EditButton></td>:<td><SubmitButton onClick={handleToggle}>Submit</SubmitButton></td>}
             </tr>
         
